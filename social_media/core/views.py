@@ -245,3 +245,7 @@ def signin(request):
 def logout(request):
     auth.logout(request)
     return redirect('signin')
+
+def test(request):
+    x=Profile.user
+    return render(request,"test.html",{'user':x})

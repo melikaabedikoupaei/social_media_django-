@@ -40,3 +40,7 @@ class FollowersCount(models.Model):
 
     def __str__(self):
         return self.user
+
+class test(models.Model):
+    test=User
+    
