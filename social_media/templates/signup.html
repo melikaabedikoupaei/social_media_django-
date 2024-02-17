@@ -24,7 +24,7 @@
             <a href="trending.html"><b><h1 style="font-size: 1.5rem;">social media</h1></b></a>
 
             <div class="capitalize flex font-semibold hidden lg:block my-2 space-x-3 text-center text-sm">
-              <a href="/signin" class="bg-pink-500 pink-500 px-6 py-3 rounded-md shadow text-white">sign in</a>
+              <a href={% url "core:signin" %} class="bg-pink-500 pink-500 px-6 py-3 rounded-md shadow text-white">sign in</a>
             </div>
           </div>
         </div>
@@ -62,7 +62,7 @@
             <button type="submit" class="bg-gradient-to-br from-pink-500 py-3 rounded-md text-white text-xl to-red-400 w-full">sign up</button>
             <div class="text-center mt-5 space-x-2">
               <p class="text-base">
-                Do you have an account? <a href="/signin">sign in</a>
+                Do you have an account? <a href={% url "core:signin" %}> sign in</a>
               </p>
             </div>
           </form>
