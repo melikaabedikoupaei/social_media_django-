@@ -8,6 +8,9 @@ class ProfileAdmin(admin.ModelAdmin):
     list_filter=('location',)
     ordering=["id_user"]
     search_fields=('user','id_user','location')
-admin.site.register(Post)
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display=('user','created_at','no_of_likes')
+    search_fields=('user','created_at','no_of_likes')
 admin.site.register(LikePost)
 admin.site.register(FollowersCount)

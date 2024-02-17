@@ -26,6 +26,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.user
+    
+    class Meta:
+        ordering = ['-created_at']
 
 class LikePost(models.Model):
     post_id = models.CharField(max_length=500)
