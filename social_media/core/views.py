@@ -246,6 +246,6 @@ def logout(request):
     auth.logout(request)
     return redirect('signin')
 
-def test(request,ids):
-    x=Profile.objects.filter(id_user=ids)
-    return render(request,"test.html",{'x':x})
+def test(request):
+    
+    return render(request,"test.html")
