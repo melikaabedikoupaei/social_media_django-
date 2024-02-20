@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load core_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -298,7 +298,7 @@
                                 </div> -->
 
                                 <p>
-                                    <a href="{%url 'core:profile' pk=post.user %}"><strong>{{post.user}}</strong></a> {{post.caption|truncatechars=50}}
+                                    <a href="{%url 'core:profile' pk=post.user %}"><strong>{{post.user}}</strong></a> {{post.caption|truncatechars:50}}
                                 </p>
 
                                 <!-- <div class="border-t pt-4 space-y-4 ">
