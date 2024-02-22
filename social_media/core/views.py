@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Profile, Post, LikePost, FollowersCount
+from .forms import SigninForm 
 from itertools import chain
 import random
 
@@ -224,22 +225,20 @@ def signup(request):
         return render(request, 'signup.html')
 
 def signin(request):
-    
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-
-        user = auth.authenticate(username=username, password=password)
-
-        if user is not None:
-            auth.login(request, user)
-            return redirect('/')
-        else:
-            messages.info(request, 'Credentials Invalid')
-            return redirect('signin')
-
+        form = SigninForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = auth.authenticate(username=username, password=password)
+            if user is not None:
+                auth.login(request, user)
+                return redirect('/')
+            else:
+                messages.error(request, 'Invalid Credentials')
     else:
-        return render(request, 'signin.html')
+        form = SigninForm()
+    return render(request, 'signin.html', {'form': form})
 
 @login_required(login_url='signin')
 def logout(request):
