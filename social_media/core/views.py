@@ -186,7 +186,7 @@ def settings(request):
             user_profile.location = location
             user_profile.save()
         
-        return redirect('settings')
+        return redirect('core:settings')
     return render(request, 'setting.html', {'user_profile': user_profile})
 
 def signup(request):
@@ -200,10 +200,10 @@ def signup(request):
         if password == password2:
             if User.objects.filter(email=email).exists():
                 messages.info(request, 'Email Taken')
-                return redirect('signup')
+                return redirect('core:signup')
             elif User.objects.filter(username=username).exists():
                 messages.info(request, 'Username Taken')
-                return redirect('signup')
+                return redirect('core:signup')
             else:
                 user = User.objects.create_user(username=username, email=email, password=password)
                 user.save()
@@ -216,10 +216,10 @@ def signup(request):
                 user_model = User.objects.get(username=username)
                 new_profile = Profile.objects.create(user=user_model, id_user=user_model.id)
                 new_profile.save()
-                return redirect('settings')
+                return redirect('core:settings')
         else:
             messages.info(request, 'Password Not Matching')
-            return redirect('signup')
+            return redirect('core:signup')
         
     else:
         return render(request, 'signup.html')
@@ -232,7 +232,7 @@ def signin(request):
             password = form.cleaned_data['password']
             user = auth.authenticate(username=username, password=password)
             if user is not None:
-                auth.login(request, user)
+                login(request, user)
                 return redirect('/')
             else:
                 messages.error(request, 'Invalid Credentials')
